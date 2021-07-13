@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- https://devdocs.magento.com/guides/v2.3/payments-integrations/base-integration/facade-configuration.html -->
+    <!-- This is the payment module facade configuration -->
+    <virtualType name="PayMayaNexGenFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <!-- Identifies the payment method -->
+            <argument name="code" xsi:type="string">paymayanexgen_payment</argument>
+
+            <!-- Identifies the info block on admin and customer pages -->
+            <!-- This is how payment data is shown on admin and customer pages -->
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\ConfigurableInfo</argument>
+
+            <!-- Identifies the form block on admin pages -->
+            <!-- This is how payment form is shown on admin pages -->
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
+
+            <argument name="valueHandlerPool" xsi:type="object">PayMayaNexGenValueHandlerPool</argument>
+
+            <argument name="validatorPool" xsi:type="object">PayMayaNexGenValidatorPool</argument>
+            <argument name="commandPool" xsi:type="object">PayMayaNexGenCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- https://devdocs.magento.com/guides/v2.3/payments-integrations/base-integration/facade-configuration.html#value_handlers_pool -->
+    <virtualType name="PayMayaNexGenValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">PayMayaNexGenConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PayMayaNexGenValidatorPool" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="availability" xsi:type="string">PayMayaNexGen\Payment\Gateway\Validator\AvailabilityValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PayMayaNexGenCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Default config value handler -->
+    <virtualType name="PayMayaNexGenConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Magento\Payment\Gateway\Config\Config</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -22,6 +22,12 @@ class Config
         $this->logger = $logger;
     }
 
+    public function isEnabled()
+    {
+        $enabled = ((bool)$this->getConfigData('active')) && $this->initPayMaya();
+        return $enabled;
+    }
+
     public function getConfigData($field, $sectionKey = null, $storeId = null)
     {
         $section = "";
