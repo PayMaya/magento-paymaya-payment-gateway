@@ -3,7 +3,6 @@
 namespace PayMayaNexGen\Payment\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
-use PayMayaNexGen\Payment\Api\PayMayaApi;
 
 class AdminWebhookRegister implements ObserverInterface {
     protected $logger;
@@ -15,22 +14,12 @@ class AdminWebhookRegister implements ObserverInterface {
         \Psr\Log\LoggerInterface $logger,
         \PayMayaNexGen\Payment\Model\Config $config,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Encryption\EncryptorInterface $encryptor
+        \PayMayaNexGen\Payment\Api\PayMayaClient $client
     ) {
         $this->logger = $logger;
         $this->config = $config;
         $this->storeManager = $storeManager;
-
-        $mode = $config->getConfigData('paymaya_mode', 'basic');
-        $encryptedSecretKey = $config->getConfigData("paymaya_{$mode}_sk", 'basic');
-        $secretKey = $encryptor->decrypt($encryptedSecretKey);
-
-        $this->logger->info("Secret key {$secretKey}");
-
-        $payMayaApi = new PayMayaApi($secretKey);
-        $payMayaApi->createApiClient();
-
-        $this->client = $payMayaApi;
+        $this->client = $client;
 
     }
 
