@@ -17,7 +17,7 @@
                 <is_gateway>1</is_gateway>
                 <order_status>pending</order_status>
                 <allowspecific>0</allowspecific>
-                <group>paymayanexgen</group>
+                <group>paymayanexgen_payment</group>
             </paymayanexgen_payment>
         </payment>
     </default>
