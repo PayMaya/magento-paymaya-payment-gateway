@@ -54,4 +54,9 @@
             <argument name="configInterface" xsi:type="object">Magento\Payment\Gateway\Config\Config</argument>
         </arguments>
     </virtualType>
+
+     <!-- CSRF Overwrite -->
+    <type name="Magento\Framework\App\Request\CsrfValidator">
+        <plugin name="paymayanexgen_csrf_validator_skip" type="PayMayaNexGen\Payment\Plugin\CsrfValidatorSkip" sortOrder="30" />
+    </type>
 </config>
