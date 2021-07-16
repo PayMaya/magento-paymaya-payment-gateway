@@ -23,7 +23,7 @@ class WebhooksObserver implements \Magento\Framework\Event\ObserverInterface
 
         if ($checkoutStatus !== 'COMPLETED') return;
 
-        $refNumber = $checkout['transactionReferenceNumber'];
+        $refNumber = $checkout['id'];
 
         $order = $this->orderHelper->loadOrderByIncrementId($orderId);
 
