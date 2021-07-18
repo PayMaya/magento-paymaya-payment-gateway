@@ -145,9 +145,9 @@ class PayMayaClient
             ],
             "items"=> $orderItems,
             "redirectUrl" => [
-                "success" => "{$baseUrl}/checkout/onepage/success",
-                "failure" => "{$baseUrl}/paymaya/fail",
-                "cancel" => "{$baseUrl}/checkout/onepage/success"
+                "success" => "{$baseUrl}paymaya/checkout/catcher?type=success",
+                "failure" => "{$baseUrl}paymaya/checkout/catcher?type=fail",
+                "cancel" => "{$baseUrl}paymaya/checkout/catcher?type=cancel"
             ],
             "requestReferenceNumber" => $order->getIncrementId(),
         ];
