@@ -15,10 +15,12 @@ class Config
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Config\Model\ResourceModel\Config $resourceConfig,
+        \Magento\Framework\App\Config\Storage\WriterInterface $configWriter,
         \Psr\Log\LoggerInterface $logger
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->resourceConfig = $resourceConfig;
+        $this->configWriter = $configWriter;
         $this->logger = $logger;
     }
 
@@ -40,22 +42,18 @@ class Config
         return $data;
     }
 
-    public function setConfigData($field, $value, $sectionKey = null, $scope = null, $storeId = null)
+    public function setConfigData($field, $value, $sectionKey = null)
     {
-        if (empty($scope))
-            $scope = ScopeInterface::SCOPE_STORE;
 
         $section = "";
 
         if ($sectionKey)
             $section = "_$sectionKey";
 
-        $this->logger->info('Scope ID ' . $scope);
         $this->logger->info("Field {$field}");
         $this->logger->info("Value {$value}");
-        $this->logger->info("Store {$storeId}");
 
-        $data = $this->resourceConfig->saveConfig("payment/paymayanexgen_payment$section/$field", $value, $scope, $storeId);
+        $data = $this->configWriter->save("payment/paymayanexgen_payment$section/$field", $value);
 
         return $data;
     }

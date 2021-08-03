@@ -27,14 +27,15 @@ class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
 
         $store = $this->storeManager->getStore();
 
-        $checkoutSuccessUrl = $this->config->getConfigData('checkout_success_url', 'webhooks', $store->getStoreId());
+        $checkoutSuccessUrl = $this->config->getConfigData('webhook_base_url', 'webhooks', $store->getStoreId());
 
         $this->logger->info("Checkout success URL is {$checkoutSuccessUrl}");
+        $this->logger->info("Base URL is {$store->getBaseUrl()}");
 
         if (empty($checkoutSuccessUrl)) {
-            $baseUrl = $store->getBaseUrl();
+            $baseUrl = substr($store->getBaseUrl(), 0, -1);
 
-            $this->config->setConfigData('checkout_success_url', "{$baseUrl}paymayanexgen/webhooks", 'webhooks', null, $store->getStoreId());
+            $this->config->setConfigData('webhook_base_url', "{$baseUrl}", 'webhooks');
         }
     }
 }

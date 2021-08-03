@@ -3,6 +3,7 @@
 namespace PayMayaNexGen\Payment\Api;
 
 use GuzzleHttp\Client as GC;
+use GuzzleHttp\Exception\ClientException;
 
 class PayMayaClient
 {
@@ -33,8 +34,19 @@ class PayMayaClient
     }
 
     public function retrieveWebhooks() {
-        $response = $this->client->get('/checkout/v1/webhooks');
-        return $response->getBody();
+        try {
+            $response = $this->client->get('/checkout/v1/webhooks');
+            return $response->getBody();
+        } catch (ClientException $err) {
+            $response = $err->getResponse();
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 404) {
+                return "[]";
+            }
+
+            throw $err;
+        }
     }
 
     public function deleteWebhook($id) {
