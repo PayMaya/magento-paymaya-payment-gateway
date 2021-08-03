@@ -1,10 +1,10 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Gateway;
+namespace PayMaya\Payment\Gateway;
 
 class CompatMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
-    protected $_code = 'paymayanexgen_payment';
+    protected $_code = 'paymaya_payment';
 
     // protected $_infoBlockType = 'PayMaya\Payment\Block\Info';
 

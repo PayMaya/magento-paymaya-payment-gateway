@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Block\Adminhtml\Config;
+namespace PayMaya\Payment\Block\Adminhtml\Config;
 
 class Fieldset extends \Magento\Config\Block\System\Config\Form\Fieldset
 {

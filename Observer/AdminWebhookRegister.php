@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Observer;
+namespace PayMaya\Payment\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 
@@ -12,9 +12,9 @@ class AdminWebhookRegister implements ObserverInterface {
 
     public function __construct(
         \Psr\Log\LoggerInterface $logger,
-        \PayMayaNexGen\Payment\Model\Config $config,
+        \PayMaya\Payment\Model\Config $config,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \PayMayaNexGen\Payment\Api\PayMayaClient $client
+        \PayMaya\Payment\Api\PayMayaClient $client
     ) {
         $this->logger = $logger;
         $this->config = $config;

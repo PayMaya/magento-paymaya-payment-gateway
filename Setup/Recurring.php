@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Setup;
+namespace PayMaya\Payment\Setup;
 
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -14,7 +14,7 @@ class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
     public function __construct(
         \Psr\Log\LoggerInterface $logger,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \PayMayaNexGen\Payment\Model\Config $config
+        \PayMaya\Payment\Model\Config $config
     ) {
         $this->config = $config;
         $this->logger = $logger;

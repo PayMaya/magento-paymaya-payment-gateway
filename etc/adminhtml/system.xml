@@ -2,15 +2,15 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="payment">
-            <group id="paymayanexgen_payment" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>PayMayaNexGen</label>
+            <group id="paymaya_payment" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>PayMaya</label>
                 <comment>Payment Gateway - Checkout</comment>
                 <fieldset_css>complex paymaya-admin-config</fieldset_css>
-                <frontend_model>PayMayaNexGen\Payment\Block\Adminhtml\Config\Fieldset</frontend_model>
+                <frontend_model>PayMaya\Payment\Block\Adminhtml\Config\Fieldset</frontend_model>
                 <attribute type="displayIn">recommended_solutions</attribute>
-                <include path="PayMayaNexGen_Payment::system/basic.xml"/>
-                <include path="PayMayaNexGen_Payment::system/cards.xml"/>
-                <include path="PayMayaNexGen_Payment::system/webhooks.xml"/>
+                <include path="PayMaya_Payment::system/basic.xml"/>
+                <include path="PayMaya_Payment::system/cards.xml"/>
+                <include path="PayMaya_Payment::system/webhooks.xml"/>
             </group>
         </section>
     </system>

@@ -1,13 +1,13 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Controller\Webhooks;
+namespace PayMaya\Payment\Controller\Webhooks;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \PayMayaNexGen\Payment\Gateway\Webhooks $webhooks
+        \PayMaya\Payment\Gateway\Webhooks $webhooks
     )
     {
         parent::__construct($context);

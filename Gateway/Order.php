@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Gateway;
+namespace PayMaya\Payment\Gateway;
 
 use Magento\Sales\Model\Order\Payment\Transaction;
 use Magento\Sales\Model\Order as MagentoOrder;

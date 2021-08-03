@@ -2,12 +2,12 @@
 <payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payments:etc/payment.xsd">
     <groups>
-        <group id="paymayanexgen">
+        <group id="paymaya">
             <label>PayMaya Payment Methods</label>
         </group>
     </groups>
     <methods>
-        <method name="paymayanexgen_payment">
+        <method name="paymaya_payment">
             <allow_multiple_address>1</allow_multiple_address>
         </method>
     </methods>

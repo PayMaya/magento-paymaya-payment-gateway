@@ -5,7 +5,7 @@
         <comment><![CDATA[The following fields are used by Paymaya to properly process order statuses after payments.<br/><strong>DON'T CHANGE THIS UNLESS YOU KNOW WHAT YOU'RE DOING</strong>.<br/>For more information, refer <a target="_blank" href="https://hackmd.io/@paymaya-pg/Checkout#Webhooks">here</a>.]]></comment>
         <field id="webhook_base_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Webhook Base URL</label>
-            <config_path>payment/paymayanexgen_payment_webhooks/webhook_base_url</config_path>
+            <config_path>payment/paymaya_payment_webhooks/webhook_base_url</config_path>
         </field>
     </group>
 </include>

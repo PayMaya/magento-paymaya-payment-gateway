@@ -1,11 +1,11 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Gateway;
+namespace PayMaya\Payment\Gateway;
 
 class Webhooks
 {
-    const PAYMENT_SUCCESS = 'paymayanexgen_payment_success_webhook';
-    const PAYMENT_FAILED = 'paymayanexgen_payment_failed_webhook';
+    const PAYMENT_SUCCESS = 'paymaya_payment_success_webhook';
+    const PAYMENT_FAILED = 'paymaya_payment_failed_webhook';
 
     public function __construct(
         \Magento\Framework\App\CacheInterface $cache,
@@ -32,7 +32,7 @@ class Webhooks
             $payload = json_decode($body, true);
 
             $this->eventManager->dispatch(
-                'paymayanexgen_webhook_event',
+                'paymaya_webhook_event',
                 array(
                     'data' => $payload
                 )
@@ -54,7 +54,7 @@ class Webhooks
         $sleep = 2; // poll every X seconds
         do
         {
-            $lock = $this->cache->load("paymayanexgen_payment_webhooks_lock");
+            $lock = $this->cache->load("paymaya_payment_webhooks_lock");
             if ($lock)
             {
                 sleep($sleep);
@@ -63,11 +63,11 @@ class Webhooks
 
         } while ($lock && $wait > 0);
 
-        $this->cache->save(1, "paymayanexgen_payment_webhooks_lock", array(), $lifetime = 60);
+        $this->cache->save(1, "paymaya_payment_webhooks_lock", array(), $lifetime = 60);
     }
 
     public function unlock()
     {
-        $this->cache->remove("paymayanexgen_payment_webhooks_lock");
+        $this->cache->remove("paymaya_payment_webhooks_lock");
     }
 }

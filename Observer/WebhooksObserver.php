@@ -1,11 +1,11 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Observer;
+namespace PayMaya\Payment\Observer;
 
 class WebhooksObserver implements \Magento\Framework\Event\ObserverInterface
 {
     public function __construct(
-        \PayMayaNexGen\Payment\Gateway\Order $orderHelper,
+        \PayMaya\Payment\Gateway\Order $orderHelper,
         \Psr\Log\LoggerInterface $logger
     ) {
         $this->logger = $logger;

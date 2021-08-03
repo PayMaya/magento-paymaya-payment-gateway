@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PayMayaNexGen\Payment\Block;
+namespace PayMaya\Payment\Block;
 
 
 class Form extends \Magento\Payment\Block\Form\Cc

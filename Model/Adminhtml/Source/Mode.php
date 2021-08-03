@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Model\Adminhtml\Source;
+namespace PayMaya\Payment\Model\Adminhtml\Source;
 
 class Mode
 {

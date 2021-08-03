@@ -8,7 +8,7 @@ define(
         'use strict';
         return Component.extend({
             defaults: {
-                template: 'PayMayaNexGen_Payment/payment/paymayanexgen_checkout'
+                template: 'PayMaya_Payment/payment/paymaya_checkout'
             },
             afterPlaceOrder: function () {
                 this.redirectAfterPlaceOrder = true;

@@ -4,7 +4,7 @@
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="paymayanexgen_payment_config" xsi:type="object">PayMayaNexGen\Payment\Model\Ui\ConfigProvider</item>
+                <item name="paymaya_payment_config" xsi:type="object">PayMaya\Payment\Model\Ui\ConfigProvider</item>
             </argument>
         </arguments>
     </type>

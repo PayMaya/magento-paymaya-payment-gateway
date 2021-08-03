@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PayMayaNexGen\Payment\Plugin;
+namespace PayMaya\Payment\Plugin;
 
 class CsrfValidatorSkip
 {

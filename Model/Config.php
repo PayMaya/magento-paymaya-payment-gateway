@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Model;
+namespace PayMaya\Payment\Model;
 
 use Magento\Store\Model\ScopeInterface;
 
@@ -37,7 +37,7 @@ class Config
         if ($sectionKey)
             $section = "_$sectionKey";
 
-        $data = $this->scopeConfig->getValue("payment/paymayanexgen_payment$section/$field", ScopeInterface::SCOPE_STORE, $storeId);
+        $data = $this->scopeConfig->getValue("payment/paymaya_payment$section/$field", ScopeInterface::SCOPE_STORE, $storeId);
 
         return $data;
     }
@@ -53,7 +53,7 @@ class Config
         $this->logger->info("Field {$field}");
         $this->logger->info("Value {$value}");
 
-        $data = $this->configWriter->save("payment/paymayanexgen_payment$section/$field", $value);
+        $data = $this->configWriter->save("payment/paymaya_payment$section/$field", $value);
 
         return $data;
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Model\Ui;
+namespace PayMaya\Payment\Model\Ui;
 
 class ConfigProvider implements \Magento\Checkout\Model\ConfigProviderInterface
 {
-    const CODE = 'paymayanexgen_payment';
+    const CODE = 'paymaya_payment';
 
     public function getConfig()
     {

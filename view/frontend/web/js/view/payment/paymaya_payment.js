@@ -10,8 +10,8 @@ define(
         'use strict';
         rendererList.push(
             {
-                type: 'paymayanexgen_payment',
-                component: 'PayMayaNexGen_Payment/js/view/payment/method-renderer/paymayanexgen_checkout'
+                type: 'paymaya_payment',
+                component: 'PayMaya_Payment/js/view/payment/method-renderer/paymaya_checkout'
             },
             // other payment method renderers if required
         );

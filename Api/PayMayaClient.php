@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Api;
+namespace PayMaya\Payment\Api;
 
 use GuzzleHttp\Client as GC;
 use GuzzleHttp\Exception\ClientException;
@@ -12,7 +12,7 @@ class PayMayaClient
     protected $client;
 
     public function __construct(
-        \PayMayaNexGen\Payment\Model\Config $config,
+        \PayMaya\Payment\Model\Config $config,
         \Magento\Framework\Encryption\EncryptorInterface $encryptor,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Psr\Log\LoggerInterface $logger

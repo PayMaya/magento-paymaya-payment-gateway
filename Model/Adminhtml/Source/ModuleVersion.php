@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Model\Adminhtml\Source;
+namespace PayMaya\Payment\Model\Adminhtml\Source;
 
 class ModuleVersion extends \Magento\Config\Block\System\Config\Form\Field
 {
@@ -12,6 +12,6 @@ class ModuleVersion extends \Magento\Config\Block\System\Config\Form\Field
 
     protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
-        return \PayMayaNexGen\Payment\Model\Config::$moduleVersion;
+        return \PayMaya\Payment\Model\Config::$moduleVersion;
     }
 }

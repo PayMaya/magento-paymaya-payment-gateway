@@ -1,6 +1,6 @@
 <?php
 
-namespace PayMayaNexGen\Payment\Controller\Checkout;
+namespace PayMaya\Payment\Controller\Checkout;
 
 class Catcher extends \Magento\Framework\App\Action\Action
 {
@@ -10,7 +10,7 @@ class Catcher extends \Magento\Framework\App\Action\Action
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \PayMayaNexGen\Payment\Api\PayMayaClient $client,
+        \PayMaya\Payment\Api\PayMayaClient $client,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Checkout\Helper\Data $checkoutHelper,
         \Magento\Sales\Api\Data\OrderInterface $order,
