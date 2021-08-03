@@ -32,10 +32,9 @@ class AdminWebhookRegister implements ObserverInterface {
             $this->client->deleteWebhook($webhook['id']);
         }
 
-        $checkoutSuccessUrl = $this->config->getConfigData('checkout_success_url', 'webhooks');
-        $checkoutFailureUrl = $this->config->getConfigData('checkout_failure_url', 'webhooks');
+        $webhookBaseUrl = $this->config->getConfigData('webhook_base_url', 'webhooks');
 
-        $this->client->createWebhook('CHECKOUT_SUCCESS', $checkoutSuccessUrl);
-        $this->client->createWebhook('CHECKOUT_FAILURE', $checkoutFailureUrl);
+        $this->client->createWebhook('CHECKOUT_SUCCESS', "{$webhookBaseUrl}/paymaya/webhooks");
+        $this->client->createWebhook('CHECKOUT_FAILURE', "{$webhookBaseUrl}/paymaya/webhooks");
     }
 }
