@@ -1,0 +1,18 @@
+.paymaya-admin-config .heading {
+    background: url("https://sandbox.digipay.ph/img/digipay/dashboard/Mobile%20Money/PayMaya.png") no-repeat 0 50% / 18rem auto;
+    padding-left: 20rem;
+}
+
+.paymaya-admin-config .button-container {
+    float: right;
+}
+
+.paymaya-admin-config .config-alt {
+    height: 28px;
+    margin: 0.5rem 0 0;
+    width: 230px;
+}
+
+.paymaya-admin-config.section-config.active > .admin__collapsible-block + input + fieldset {
+    margin-left: 40px;
+}
