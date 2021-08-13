@@ -1,5 +1,5 @@
 {
-    "name": "cyndertech/paymaya-payment",
+    "name": "paymaya_philippines/paymaya-payment",
     "description": "PayMaya payment method for Magento",
     "type": "magento2-module",
     "version": "1.0.0",
