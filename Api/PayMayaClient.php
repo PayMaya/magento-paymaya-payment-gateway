@@ -109,6 +109,46 @@ class PayMayaClient
             ]);
         }
 
+        $shippingAddress = $order->getShippingAddress();
+        $billingAddress = $order->getBillingAddress();
+
+        $addressGetter = isset($shippingAddress) ? $shippingAddress : $billingAddress;
+
+        $buyerData = [
+            "firstName" => $order->getCustomerFirstname(),
+            "middleName" => $order->getCustomerMiddlename(),
+            "lastName" => $order->getCustomerLastname(),
+            "birthday"=> $order->getCustomerDob(),
+            //"customerSince" => "1995-10-24",
+            "sex" => $order->getCustomerGender(),
+            "contact" => [
+                "phone" => $addressGetter->getTelephone(),
+                "email" => $order->getCustomerEmail()
+            ],
+            "shippingAddress" => [
+                "firstName" => $order->getCustomerFirstname(),
+                "middleName" => $order->getCustomerMiddlename(),
+                "lastName" => $order->getCustomerLastname(),
+                "phone" => "+639202020202",
+                "email" => $order->getCustomerEmail(),
+                "line1" => $addressGetter->getStreet(1)[0],
+                "line2" => $addressGetter->getStreet(2)[0],
+                "city" => $addressGetter->getCity(),
+                "state" => $addressGetter->getRegionCode(),
+                "zipCode" => $addressGetter->getPostCode(),
+                "countryCode" => $addressGetter->getCountryId(),
+                "shippingType" => "ST" // ST - for standard, SD - for same day
+            ],
+            "billingAddress" => [
+                "line1" => $addressGetter->getStreet(1)[0],
+                "line2" => $addressGetter->getStreet(2)[0],
+                "city" => $addressGetter->getCity(),
+                "state" => $addressGetter->getRegionCode(),
+                "zipCode" => $addressGetter->getPostCode(),
+                "countryCode" => $addressGetter->getCountryId(),
+            ]
+        ];
+
         $payMayaArray = [
             "totalAmount" => [
                 "value" => $order->getTotalDue(),
@@ -121,40 +161,7 @@ class PayMayaClient
                     "subtotal" => $order->getBaseSubtotal()
                 ]
             ],
-            "buyer" => [
-                "firstName" => $order->getCustomerFirstname(),
-                "middleName" => $order->getCustomerMiddlename(),
-                "lastName" => $order->getCustomerLastname(),
-                "birthday"=> $order->getCustomerDob(),
-                //"customerSince" => "1995-10-24",
-                "sex" => $order->getCustomerGender(),
-                "contact" => [
-                    "phone" => $order->getShippingAddress()->getTelephone(),
-                    "email" => $order->getCustomerEmail()
-                ],
-                "shippingAddress" => [
-                    "firstName" => $order->getCustomerFirstname(),
-                    "middleName" => $order->getCustomerMiddlename(),
-                    "lastName" => $order->getCustomerLastname(),
-                    "phone" => "+639202020202",
-                    "email" => $order->getCustomerEmail(),
-                    "line1" => $order->getShippingAddress()->getStreet(1)[0],
-                    "line2" => $order->getShippingAddress()->getStreet(2)[0],
-                    "city" => $order->getShippingAddress()->getCity(),
-                    "state" => $order->getShippingAddress()->getRegionCode(),
-                    "zipCode" => $order->getShippingAddress()->getPostCode(),
-                    "countryCode" => $order->getShippingAddress()->getCountryId(),
-                    "shippingType" => "ST" // ST - for standard, SD - for same day
-                ],
-                "billingAddress" => [
-                    "line1" => $order->getShippingAddress()->getStreet(1)[0],
-                    "line2" => $order->getShippingAddress()->getStreet(2)[0],
-                    "city" => $order->getShippingAddress()->getCity(),
-                    "state" => $order->getShippingAddress()->getRegionCode(),
-                    "zipCode" => $order->getShippingAddress()->getPostCode(),
-                    "countryCode" => $order->getShippingAddress()->getCountryId(),
-                ]
-            ],
+            "buyer" => $buyerData,
             "items"=> $orderItems,
             "redirectUrl" => [
                 "success" => "{$baseUrl}paymaya/checkout/catcher?type=success",
