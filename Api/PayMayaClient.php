@@ -7,7 +7,8 @@ use GuzzleHttp\Exception\ClientException;
 
 class PayMayaClient
 {
-    const BASE_URL = 'https://pg-sandbox.paymaya.com';
+    const SANDBOX_BASE_URL = 'https://pg-sandbox.paymaya.com';
+    const PRODUCTION_BASE_URL = 'https://pg.paymaya.com';
 
     protected $client;
 
@@ -24,9 +25,11 @@ class PayMayaClient
         $mode = $config->getConfigData('paymaya_mode', 'basic');
         $encryptedSecretKey = $config->getConfigData("paymaya_{$mode}_sk", 'basic');
         $secretKey = $encryptor->decrypt($encryptedSecretKey);
+        $moduleVersion = $config::$moduleVersion;
 
-        $defaultOptions['base_uri'] = self::BASE_URL;
+        $defaultOptions['base_uri'] = $mode === 'test' ? self::SANDBOX_BASE_URL : self::PRODUCTION_BASE_URL;
         $defaultOptions['headers']['authorization'] = $this->getAuthHeader($secretKey);
+        $defaultOptions['headers']['x-paymaya-sdk'] = 'magento-v' . $moduleVersion;
 
         $client = new GC($defaultOptions);
 
