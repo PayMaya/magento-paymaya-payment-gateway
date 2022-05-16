@@ -3,7 +3,7 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payments:etc/payment.xsd">
     <groups>
         <group id="paymaya">
-            <label>PayMaya Payment Methods</label>
+            <label>Maya Payment Methods</label>
         </group>
     </groups>
     <methods>
