@@ -2,7 +2,7 @@
 <include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
     <group id="webhooks" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Webhooks Settings</label>
-        <comment><![CDATA[The following fields are used by Paymaya to properly process order statuses after payments.<br/><strong>DON'T CHANGE THIS UNLESS YOU KNOW WHAT YOU'RE DOING</strong>.<br/>For more information, refer <a target="_blank" href="https://hackmd.io/@paymaya-pg/Checkout#Webhooks">here</a>.]]></comment>
+        <comment><![CDATA[The following fields are used by Maya to properly process order statuses after payments.<br/><strong>DON'T CHANGE THIS UNLESS YOU KNOW WHAT YOU'RE DOING</strong>.<br/>For more information, refer <a target="_blank" href="https://developers.maya.ph/docs/receive-real-time-payment-information-using-webhooks">here</a>.]]></comment>
         <field id="webhook_base_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Webhook Base URL</label>
             <config_path>payment/paymaya_payment_webhooks/webhook_base_url</config_path>
