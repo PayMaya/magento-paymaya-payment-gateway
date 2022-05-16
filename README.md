@@ -1,21 +1,21 @@
-# PayMaya Magento Extension
+# Maya Business Plugin
 
-This is the repository of the official PayMaya Magento payment gateway extension
+This is the repository of the official Maya Magento payment gateway extension
 
 ## Give your customers a better online checkout experience
 
-With PayMaya Checkout, your website or app can directly accept credit and debit cards, e-wallet, and other emerging payment solutions.
+With Maya Checkout, your website or app can directly accept credit and debit cards, e-wallet, and other emerging payment solutions.
 
 * Mastercard
 * Visa
 * JCB
 * WeChat Pay
-* Pay With PayMaya
+* Pay With Maya
 
 ### Features
 
-* Payments via PayMaya Checkout
+* Payments via Maya Checkout
 * Full 3DS Support and PCI-DSS Compliant
 * Checkout page customizations
 
-## Don't have an account yet? [Click here to get started](https://enterprise.paymaya.com/solutions/plugins/woocommerce)
+## Don't have an account yet? [Click here to get started](https://developers.maya.ph/docs/magento-2)
