@@ -2,7 +2,7 @@
 <include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
     <group id="basic" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Basic Settings</label>
-        <comment>You will need to set your API keys before you can accept payments. If you do not yet have a PayMaya account, please &lt;a href="https://manage.paymaya.com/register" target="_blank"&gt;click here&lt;/a&gt; to register.</comment>
+        <comment>You will need to set your API keys before you can accept payments. If you do not yet have a Maya account, please &lt;a href="https://manage.paymaya.com/register" target="_blank"&gt;click here&lt;/a&gt; to register.</comment>
         <field id="module_version" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Module Version</label>
             <frontend_model>PayMaya\Payment\Model\Adminhtml\Source\ModuleVersion</frontend_model>
@@ -16,7 +16,7 @@
         <field id="paymaya_test_sk" translate="label" type="obscure" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Sandbox Secret API Key</label>
             <comment>
-                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your PayMaya Account</a> &gt; API Keys &gt; Test Secret Key]]>
+                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your Maya Account</a> &gt; API Keys &gt; Test Secret Key]]>
             </comment>
             <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
             <depends>
@@ -27,7 +27,7 @@
         <field id="paymaya_test_pk" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Sandbox Public API Key</label>
             <comment>
-                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your PayMaya Account</a> &gt; API Keys &gt; Test Public Key]]>
+                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your Maya Account</a> &gt; API Keys &gt; Test Public Key]]>
             </comment>
             <depends>
                 <field id="paymaya_mode">test</field>
@@ -37,7 +37,7 @@
         <field id="paymaya_live_sk" translate="label" type="obscure" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Live Secret API Key</label>
             <comment>
-                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your PayMaya Account</a> &gt; API Keys &gt; Live Secret Key]]>
+                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your Maya Account</a> &gt; API Keys &gt; Live Secret Key]]>
             </comment>
             <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
             <depends>
@@ -48,7 +48,7 @@
         <field id="paymaya_live_pk" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Live Public API Key</label>
             <comment>
-                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your PayMaya Account</a> &gt; API Keys &gt; Live Public Key]]>
+                <![CDATA[<a target="_blank" href="https://dashboard.paymaya.com/developers">Your Maya Account</a> &gt; API Keys &gt; Live Public Key]]>
             </comment>
             <depends>
                 <field id="paymaya_mode">live</field>

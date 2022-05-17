@@ -7,7 +7,7 @@
                 <active>1</active>
                 <paymaya_test_sk backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
                 <paymaya_live_sk backend_model="Magento\Config\Model\Config\Backend\Encrypted" />
-                <title>PayMaya - Credit Card</title>
+                <title>Maya - Credit Card</title>
 
                 <model>PayMayaFacade</model>
                 <payment_action>authorize</payment_action>

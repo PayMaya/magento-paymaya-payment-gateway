@@ -3,7 +3,7 @@
     <system>
         <section id="payment">
             <group id="paymaya_payment" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>PayMaya</label>
+                <label>Maya</label>
                 <comment>Payment Gateway - Checkout</comment>
                 <fieldset_css>complex paymaya-admin-config</fieldset_css>
                 <frontend_model>PayMaya\Payment\Block\Adminhtml\Config\Fieldset</frontend_model>
