@@ -36,5 +36,8 @@ class AdminWebhookRegister implements ObserverInterface {
 
         $this->client->createWebhook('CHECKOUT_SUCCESS', "{$webhookBaseUrl}/paymaya/webhooks");
         $this->client->createWebhook('CHECKOUT_FAILURE', "{$webhookBaseUrl}/paymaya/webhooks");
+        $this->client->createWebhook('PAYMENT_SUCCESS', "{$webhookBaseUrl}/paymaya/webhooks/payment");
+        $this->client->createWebhook('PAYMENT_FAILED', "{$webhookBaseUrl}/paymaya/webhooks/payment");
+        $this->client->createWebhook('PAYMENT_EXPIRED', "{$webhookBaseUrl}/paymaya/webhooks/payment");
     }
 }

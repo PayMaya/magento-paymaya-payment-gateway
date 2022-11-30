@@ -2,7 +2,7 @@
 
 namespace PayMaya\Payment\Controller\Webhooks;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Payment extends \Magento\Framework\App\Action\Action
 {
 
     public function __construct(
@@ -18,7 +18,7 @@ class Index extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $this->webhooks->lock();
-        $this->webhooks->dispatchEvent('paymaya_webhook_event');
+        $this->webhooks->dispatchEvent('paymaya_payment_webhook_event');
         $this->webhooks->unlock();
     }
 }
