@@ -7,4 +7,10 @@
             instance="PayMaya\Payment\Observer\WebhooksObserver"
         />
     </event>
+    <event name="paymaya_payment_webhook_event">
+        <observer
+            name="paymaya_payment_webhook_event"
+            instance="PayMaya\Payment\Observer\PaymentWebhookObserver"
+        />
+    </event>
 </config>

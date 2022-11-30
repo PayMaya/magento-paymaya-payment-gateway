@@ -28,6 +28,11 @@ class Order
         $this->orderSender->send($order);
     }
 
+    public function setAsFailed($order, $paymentId) {
+        $order->setState(MagentoOrder::STATE_HOLDED, true)->save();
+        $order->addCommentToStatusHistory("Failed payment {$paymentId}", MagentoOrder::STATE_HOLDED, true)->save();
+    }
+
     /**
      * Create transaction records for the order with a PayMongo payment ID
      */
