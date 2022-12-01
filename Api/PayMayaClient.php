@@ -90,6 +90,24 @@ class PayMayaClient
         return "Basic " . base64_encode($secretKey . ':');
     }
 
+    private function formatBirthdate($rawBirthDate) {
+        $time = strtotime($rawBirthDate);
+        return date('Y-m-d', $time);
+    }
+
+    private function formatGender($rawGender) {
+        switch ($rawGender) {
+            // Mapping out Unspecified option in Magento to Male in Maya by default
+            case 0:
+            case 1: {
+                return 'M';
+            }
+            case 2: {
+                return 'F';
+            }
+        }
+    }
+
     private function formatOrderForPayment(\Magento\Sales\Model\Order $order)
     {
         $baseUrl = $this->storeManager->getStore()->getBaseUrl();
@@ -116,14 +134,15 @@ class PayMayaClient
         $billingAddress = $order->getBillingAddress();
 
         $addressGetter = isset($shippingAddress) ? $shippingAddress : $billingAddress;
+        $rawBirthDate = $order->getCustomerDob();
+        $rawGender = $order->getCustomerGender();
 
         $buyerData = [
             "firstName" => $order->getCustomerFirstname(),
             "middleName" => $order->getCustomerMiddlename(),
             "lastName" => $order->getCustomerLastname(),
-            "birthday"=> $order->getCustomerDob(),
-            //"customerSince" => "1995-10-24",
-            "sex" => $order->getCustomerGender(),
+            "birthday"=> $this->formatBirthdate($rawBirthDate),
+            "sex" => $this->formatGender($rawGender),
             "contact" => [
                 "phone" => $addressGetter->getTelephone(),
                 "email" => $order->getCustomerEmail()
@@ -132,7 +151,7 @@ class PayMayaClient
                 "firstName" => $order->getCustomerFirstname(),
                 "middleName" => $order->getCustomerMiddlename(),
                 "lastName" => $order->getCustomerLastname(),
-                "phone" => "+639202020202",
+                "phone" => $addressGetter->getTelephone(),
                 "email" => $order->getCustomerEmail(),
                 "line1" => $addressGetter->getStreet(1)[0],
                 "line2" => $addressGetter->getStreet(2)[0],

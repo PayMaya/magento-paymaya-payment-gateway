@@ -19,7 +19,7 @@ class Webhooks
         $this->eventManager = $eventManager;
     }
 
-    public function dispatchEvent()
+    public function dispatchEvent($eventType)
     {
         try
         {
@@ -32,7 +32,7 @@ class Webhooks
             $payload = json_decode($body, true);
 
             $this->eventManager->dispatch(
-                'paymaya_webhook_event',
+                $eventType,
                 array(
                     'data' => $payload
                 )
