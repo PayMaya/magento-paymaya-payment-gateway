@@ -9,6 +9,7 @@ class AdminWebhookRegister implements ObserverInterface {
     protected $config;
     protected $client;
     protected $storeManager;
+    protected $overridable_webhooks;
 
     public function __construct(
         \Psr\Log\LoggerInterface $logger,
@@ -20,7 +21,13 @@ class AdminWebhookRegister implements ObserverInterface {
         $this->config = $config;
         $this->storeManager = $storeManager;
         $this->client = $client;
-
+        $this->overridable_webhooks = array(
+            'CHECKOUT_SUCCESS',
+            'CHECKOUT_FAILURE',
+            'PAYMENT_SUCCESS',
+            'PAYMENT_FAILED',
+            'PAYMENT_EXPIRED',
+        );
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -29,7 +36,9 @@ class AdminWebhookRegister implements ObserverInterface {
         $webhooks = json_decode($body, true);
 
         foreach ($webhooks as $webhook) {
-            $this->client->deleteWebhook($webhook['id']);
+            if (in_array($webhook['name'], $this->overridable_webhooks)) {
+                $this->client->deleteWebhook($webhook['id']);
+            }
         }
 
         $webhookBaseUrl = $this->config->getConfigData('webhook_base_url', 'webhooks');
