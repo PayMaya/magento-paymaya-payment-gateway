@@ -10,7 +10,7 @@ class Config
     protected $resourceConfig;
     protected $logger;
 
-    public static $moduleVersion = "1.0.4";
+    public static $moduleVersion = "1.0.5";
 
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
