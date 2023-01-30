@@ -19,6 +19,9 @@
                 <allowspecific>0</allowspecific>
                 <group>paymaya</group>
             </paymaya_payment>
+            <paymaya_payment_misc>
+                <paymaya_send_oc_before_ps>1</paymaya_send_oc_before_ps>
+            </paymaya_payment_misc>
         </payment>
     </default>
 </config>

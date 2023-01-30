@@ -25,7 +25,7 @@ class Order
         $order->setStatus(MagentoOrder::STATE_PROCESSING)->save();
 
         /** Send order confirmation e-mail */
-        $this->orderSender->send($order);
+        $this->orderSender->sendMayaConfirmation($order);
     }
 
     public function setAsFailed($order, $paymentId) {
