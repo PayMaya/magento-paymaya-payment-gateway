@@ -29,7 +29,8 @@ class Order
     }
 
     public function setAsFailed($order, $paymentId) {
-        $order->setState(MagentoOrder::STATE_HOLDED, true)->save();
+        $order->setState(MagentoOrder::STATE_CANCELED, true)->save();
+        $order->setStatus(MagentoOrder::STATE_CANCELED)->save();
         $order->addCommentToStatusHistory("Failed payment {$paymentId}", MagentoOrder::STATE_HOLDED, true)->save();
     }
 
