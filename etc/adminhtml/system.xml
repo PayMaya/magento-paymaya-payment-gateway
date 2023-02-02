@@ -11,6 +11,7 @@
                 <include path="PayMaya_Payment::system/basic.xml"/>
                 <include path="PayMaya_Payment::system/cards.xml"/>
                 <include path="PayMaya_Payment::system/webhooks.xml"/>
+                <include path="PayMaya_Payment::system/misc.xml"/>
             </group>
         </section>
     </system>

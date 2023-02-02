@@ -48,6 +48,8 @@
         </arguments>
     </virtualType>
 
+    <preference for="\Magento\Sales\Model\Order\Email\Sender\OrderSender" type="PayMaya\Payment\Model\Order\Email\Sender\OrderSender" />
+
     <!-- Default config value handler -->
     <virtualType name="PayMayaConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
         <arguments>
