@@ -8,6 +8,7 @@ class Config
 {
     protected $scopeConfig;
     protected $resourceConfig;
+    protected $configWriter;
     protected $logger;
 
     public static $moduleVersion = "1.1.0";
@@ -26,7 +27,7 @@ class Config
 
     public function isEnabled()
     {
-        $enabled = ((bool)$this->getConfigData('active')) && $this->initPayMaya();
+        $enabled = ((bool)$this->getConfigData('active'));
         return $enabled;
     }
 
