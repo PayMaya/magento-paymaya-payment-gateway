@@ -4,9 +4,12 @@ namespace PayMaya\Payment\Observer;
 
 class WebhooksObserver implements \Magento\Framework\Event\ObserverInterface
 {
+    protected $logger;
+    protected $orderHelper;
+
     public function __construct(
         \PayMaya\Payment\Gateway\Order $orderHelper,
-        \Psr\Log\LoggerInterface $logger
+        \PayMaya\Payment\Logger\Logger $logger
     ) {
         $this->logger = $logger;
         $this->orderHelper = $orderHelper;

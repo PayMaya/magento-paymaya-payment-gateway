@@ -11,12 +11,15 @@ class PayMayaClient
     const PRODUCTION_BASE_URL = 'https://pg.paymaya.com';
 
     protected $client;
+    protected $config;
+    protected $logger;
+    protected $storeManager;
 
     public function __construct(
         \PayMaya\Payment\Model\Config $config,
         \Magento\Framework\Encryption\EncryptorInterface $encryptor,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Psr\Log\LoggerInterface $logger
+        \PayMaya\Payment\Logger\Logger $logger
     ) {
         $this->config = $config;
         $this->logger = $logger;
@@ -74,7 +77,7 @@ class PayMayaClient
 
         $payload = $this->formatOrderForPayment($order);
 
-        $this->logger->debug('Payload ' . json_encode($payload));
+        $this->logger->debug('[Create Checkout][Payload]' . json_encode($payload));
 
         $response = $this->client->post('/checkout/v1/checkouts', [
             'json' => $payload,
@@ -91,6 +94,8 @@ class PayMayaClient
     }
 
     private function formatBirthdate($rawBirthDate) {
+        if (!isset($rawBirthDate)) return '';
+
         $time = strtotime($rawBirthDate);
         return date('Y-m-d', $time);
     }
@@ -193,7 +198,6 @@ class PayMayaClient
             "requestReferenceNumber" => $order->getIncrementId(),
         ];
 
-        //echo "<pre>order items: "; print_r($payMayaArray); die;
         return $payMayaArray;
     }
 }

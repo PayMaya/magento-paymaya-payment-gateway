@@ -8,6 +8,12 @@ class Catcher extends \Magento\Framework\App\Action\Action
     const CATCH_TYPE_FAIL = 'fail';
     const CATCH_TYPE_CANCEL = 'cancel';
 
+    protected $checkoutHelper;
+    protected $client;
+    protected $request;
+    protected $order;
+    protected $logger;
+
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \PayMaya\Payment\Api\PayMayaClient $client,
@@ -27,7 +33,7 @@ class Catcher extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-            $catchType = $this->request->getParam('type');
+        $catchType = $this->request->getParam('type');
 
         switch ($catchType) {
             case self::CATCH_TYPE_SUCCESS: {

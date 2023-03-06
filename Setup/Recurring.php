@@ -12,7 +12,7 @@ class Recurring implements \Magento\Framework\Setup\InstallSchemaInterface
     protected $storeManager;
 
     public function __construct(
-        \Psr\Log\LoggerInterface $logger,
+        \PayMaya\Payment\Logger\Logger $logger,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \PayMaya\Payment\Model\Config $config
     ) {

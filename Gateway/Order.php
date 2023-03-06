@@ -2,11 +2,15 @@
 
 namespace PayMaya\Payment\Gateway;
 
+use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Model\Order\Payment\Transaction;
 use Magento\Sales\Model\Order as MagentoOrder;
 
 class Order
 {
+    protected $order;
+    protected $orderSender;
+
     public function __construct(
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
         \Magento\Sales\Api\Data\OrderInterface $order
@@ -35,13 +39,13 @@ class Order
     }
 
     /**
-     * Create transaction records for the order with a PayMongo payment ID
+     * Create transaction records for the order with a Maya payment ID
      */
     public function createTransaction($order, $paymentId) {
         /** Get associated payment model */
         $payment = $order->getPayment();
 
-        /** Set the transaction ID using PayMongo Payment ID */
+        /** Set the transaction ID using Maya ID */
         $payment->setTransactionId($paymentId);
 
         /**
@@ -52,7 +56,7 @@ class Order
 
         /**
          * Don't settle transactions in case of manual refunds since refunds are not
-         * yet available through the PayMongo API
+         * yet available through the extension
          */
         $payment->setIsTransactionClosed(0);
 
@@ -65,7 +69,14 @@ class Order
         /** Save the transaction record */
         $transaction->save();
     }
-
+    
+    /**
+     * loadOrderByIncrementId
+     *
+     * @param  string $orderId
+     * @param  integer $count
+     * @return OrderInterface
+     */
     public function loadOrderByIncrementId($orderId, $count = 7)
     {
         $order = $this->order->loadByIncrementId($orderId);

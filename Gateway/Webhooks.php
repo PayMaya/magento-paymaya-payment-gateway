@@ -7,11 +7,16 @@ class Webhooks
     const PAYMENT_SUCCESS = 'paymaya_payment_success_webhook';
     const PAYMENT_FAILED = 'paymaya_payment_failed_webhook';
 
+    protected $cache;
+    protected $logger;
+    protected $request;
+    protected $eventManager;
+
     public function __construct(
         \Magento\Framework\App\CacheInterface $cache,
         \Magento\Framework\Event\ManagerInterface $eventManager,
         \Magento\Framework\App\Request\Http $request,
-        \Psr\Log\LoggerInterface $logger
+        \PayMaya\Payment\Logger\Logger $logger
     ) {
         $this->cache = $cache;
         $this->logger = $logger;
@@ -29,6 +34,8 @@ class Webhooks
             // Retrieve the request's body and parse it as JSON
             $body = $this->request->getContent();
 
+            $this->logger->debug('[Handle Webhook] For ' . $eventType . ' with payload ' . $body);
+
             $payload = json_decode($body, true);
 
             $this->eventManager->dispatch(
@@ -38,11 +45,11 @@ class Webhooks
                 )
             );
 
-            $this->logger->info("200 OK");
+            $this->logger->info("[Handle Webhook] 200 OK");
         }
         catch (\Exception $e)
         {
-            $this->logger->error($e->getMessage());
+            $this->logger->error('[Handle Webhook] ' . $e->getMessage());
         }
     }
 
