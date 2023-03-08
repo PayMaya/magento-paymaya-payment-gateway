@@ -1,12 +1,16 @@
 <?php
 
 namespace PayMaya\Payment\Observer;
+use Magento\Sales\Model\Order as MagentoOrder;
 
 class PaymentWebhookObserver implements \Magento\Framework\Event\ObserverInterface
 {
+    protected $logger;
+    protected $orderHelper;
+
     public function __construct(
         \PayMaya\Payment\Gateway\Order $orderHelper,
-        \Psr\Log\LoggerInterface $logger
+        \PayMaya\Payment\Logger\Logger $logger
     ) {
         $this->logger = $logger;
         $this->orderHelper = $orderHelper;
@@ -15,7 +19,7 @@ class PaymentWebhookObserver implements \Magento\Framework\Event\ObserverInterfa
     public function execute(\Magento\Framework\Event\Observer $observer) {
         $payment = $observer->getData('data');
 
-        $this->logger->debug('Data ' . json_encode($payment));
+        $this->logger->info('[Handle Webhook][Data] ' . json_encode($payment));
 
         $paymentStatus = $payment['status'];
         $orderId = $payment['requestReferenceNumber'];
@@ -25,6 +29,11 @@ class PaymentWebhookObserver implements \Magento\Framework\Event\ObserverInterfa
         $order = $this->orderHelper->loadOrderByIncrementId($orderId);
 
         $this->orderHelper->createTransaction($order, $refNumber);
+
+        if ($order->getStatus() === MagentoOrder::STATE_PROCESSING) {
+            $this->logger->debug('[Handle Webhook] Order ' . $orderId . ' has already been paid.');
+            return;
+        }
 
         if ($paymentStatus === 'PAYMENT_SUCCESS') {
             $this->orderHelper->setAsPaid($order);

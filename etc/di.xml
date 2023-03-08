@@ -61,4 +61,19 @@
     <type name="Magento\Framework\App\Request\CsrfValidator">
         <plugin name="paymaya_csrf_validator_skip" type="PayMaya\Payment\Plugin\CsrfValidatorSkip" sortOrder="30" />
     </type>
+
+    <type name="PayMaya\Payment\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+    <type name="PayMaya\Payment\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">MayaLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">PayMaya\Payment\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

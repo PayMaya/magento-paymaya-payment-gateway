@@ -8,9 +8,10 @@ class Config
 {
     protected $scopeConfig;
     protected $resourceConfig;
+    protected $configWriter;
     protected $logger;
 
-    public static $moduleVersion = "1.1.0";
+    public static $moduleVersion = "1.1.1";
 
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
@@ -26,7 +27,7 @@ class Config
 
     public function isEnabled()
     {
-        $enabled = ((bool)$this->getConfigData('active')) && $this->initPayMaya();
+        $enabled = ((bool)$this->getConfigData('active'));
         return $enabled;
     }
 
