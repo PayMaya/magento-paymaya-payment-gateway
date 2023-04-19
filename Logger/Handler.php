@@ -6,7 +6,7 @@ use Magento\Framework\Filesystem\DriverInterface;
 
 class Handler extends \Magento\Framework\Logger\Handler\Base
 {
-    protected $filePath = BP . DIRECTORY_SEPARATOR . 'var/log/';
+    protected $filePath = BP . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'log' . DIRECTORY_SEPARATOR;
     protected $fileNamePrefix = 'maya-log';
 
     public function __construct(
