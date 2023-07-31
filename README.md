@@ -19,3 +19,7 @@ With Maya Checkout, your website or app can directly accept credit and debit car
 * Checkout page customizations
 
 ## Don't have an account yet? [Click here to get started](https://developers.maya.ph/docs/magento-2)
+
+### Version Compatibility
+This version (1.1.2) is currently compatible with the following Magento version:
+* 2.4
