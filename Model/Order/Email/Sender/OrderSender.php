@@ -12,7 +12,8 @@ use Magento\Framework\Event\ManagerInterface;
 
 use Magento\Sales\Model\Order\Email\Sender\OrderSender as SenderOrderSender;
 
-class OrderSender extends SenderOrderSender {
+class OrderSender extends SenderOrderSender
+{
     /**
      * @var PaymentHelper
      */
@@ -100,7 +101,7 @@ class OrderSender extends SenderOrderSender {
         $order->setSendEmail($this->identityContainer->isEnabled());
 
         if (!$this->globalConfig->getValue('sales_email/general/async_sending') || $forceSyncMode) {
-            $payment_method = $order->getPayment()->getMethodInstance()->getCode();
+            $payment_method = $order->getPayment()->getMethod();
             $send_oc_before_ps = $this->config->getConfigData('paymaya_send_oc_before_ps', 'misc');
 
             $paidByMaya = $payment_method === 'paymaya_payment';
@@ -122,7 +123,8 @@ class OrderSender extends SenderOrderSender {
         return false;
     }
 
-    public function sendMayaConfirmation(Order $order, $forceSyncMode = false) {
+    public function sendMayaConfirmation(Order $order, $forceSyncMode = false)
+    {
         $send_oc_before_ps = $this->config->getConfigData('paymaya_send_oc_before_ps', 'misc');
 
         if (!$send_oc_before_ps) {
