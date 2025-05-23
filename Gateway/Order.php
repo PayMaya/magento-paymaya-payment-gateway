@@ -12,10 +12,9 @@ class Order
     protected $orderSender;
 
     public function __construct(
-        \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
+        \PayMaya\Payment\Model\Order\Email\Sender\OrderSender $orderSender,
         \Magento\Sales\Api\Data\OrderInterface $order
-    )
-    {
+    ) {
         $this->orderSender = $orderSender;
         $this->order = $order;
     }
@@ -23,7 +22,8 @@ class Order
     /**
      * Set order as paid
      */
-    public function setAsPaid($order) {
+    public function setAsPaid($order)
+    {
         /** Set order state and status to processing */
         $order->setState(MagentoOrder::STATE_PROCESSING, true)->save();
         $order->setStatus(MagentoOrder::STATE_PROCESSING)->save();
@@ -32,7 +32,8 @@ class Order
         $this->orderSender->sendMayaConfirmation($order);
     }
 
-    public function setAsFailed($order, $paymentId) {
+    public function setAsFailed($order, $paymentId)
+    {
         $order->setState(MagentoOrder::STATE_CANCELED, true)->save();
         $order->setStatus(MagentoOrder::STATE_CANCELED)->save();
         $order->addCommentToStatusHistory("Failed payment {$paymentId}", MagentoOrder::STATE_HOLDED, true)->save();
@@ -41,7 +42,8 @@ class Order
     /**
      * Create transaction records for the order with a Maya payment ID
      */
-    public function createTransaction($order, $paymentId) {
+    public function createTransaction($order, $paymentId)
+    {
         /** Get associated payment model */
         $payment = $order->getPayment();
 
@@ -69,7 +71,7 @@ class Order
         /** Save the transaction record */
         $transaction->save();
     }
-    
+
     /**
      * loadOrderByIncrementId
      *
@@ -81,8 +83,7 @@ class Order
     {
         $order = $this->order->loadByIncrementId($orderId);
 
-        if (empty($order) || empty($order->getId()) && $count >= 0)
-        {
+        if (empty($order) || empty($order->getId()) && $count >= 0) {
             // Webhooks Race Condition: Sometimes we may receive the webhook before Magento commits the order to the database,
             // so we give it a few seconds and try again. Can happen when multiple subscriptions are purchased together.
             sleep(4);
